@@ -12,5 +12,3 @@ class Items(models.Model):
 
     def __str__(self):
         return self.name
-    def desc(self):
-        return self.description
