@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 from . import api_telegram
 from . import db_api
-from .db_api import joinCol
+from .db_api import joinCol, chek_user,addUser
 import json, pandas as pd
 from pandas import json_normalize
 import datetime as dt
@@ -47,7 +47,9 @@ class UpdateBot(APIView):
             dfMain.to_sql(name='market_telegramlog', con=engine, schema='public', if_exists='append',
                           index=False)  # write log to database
 
-        
+        if chek_user(dfMain.iloc[0,7]) == 0:
+            addUser(dfMain["user_name","message_from_id", "first_name", "last_name", "message_date"])   #['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
+
 
         api_telegram.send_message(chat_id=dfMain.iloc[0,7], message=str(dfMain.iloc[0,9]))
 

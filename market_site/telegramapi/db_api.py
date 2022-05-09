@@ -35,6 +35,20 @@ def processed(update_id): #flag current log message
     connection = engine.connect()
     connection.execute(sql)
 
+def chek_user(user_id):
+
+    sql = '''
+    select user_id from public.market_user where user_id''' + str(user_id)
+    user = pd.read_sql_query(sql,con=engine)
+    if len(user)<1:
+        res = 0
+    else :
+        res =1
+    return res
+
+
+
+
 def addUser(dfAddUser): # add new user to user tables
     dfAddUser.rename(columns={ 'message_from_id': 'user_id', 'message_date':'first_message_time'},  inplace=True)
     dfAddUser['status']=0
