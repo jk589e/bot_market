@@ -18,6 +18,7 @@ class UpdateBot(APIView):
         # Сюда должны получать сообщения от телеграм и далее обрабатываться ботом
         #print(request)
         res = request.body.decode('UTF-8')
+
         api_telegram.send_message(chat_id=526697170, message=res)
         #print(res)
 
