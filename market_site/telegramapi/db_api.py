@@ -38,7 +38,7 @@ def processed(update_id): #flag current log message
 def chek_user(user_id):
 
     sql = '''
-    select user_id from public.market_user where user_id''' + str(user_id)
+    select user_id from public.market_user where user_id=''' + str(user_id)
     user = pd.read_sql_query(sql,con=engine)
     if len(user)<1:
         res = 0
