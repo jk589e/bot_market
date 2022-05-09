@@ -49,6 +49,6 @@ class UpdateBot(APIView):
 
         
 
-        api_telegram.send_message(chat_id=dfMain.iloc[0,7], message=str(dfMain.iloc[0,9]))
+        api_telegram.send_message(chat_id=dfMain.iloc[0,7], message=str(dfMain.iloc[0,10]))
 
         return Response({'code': 200})
