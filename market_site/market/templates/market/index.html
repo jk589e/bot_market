@@ -4,31 +4,62 @@
 <head>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-
 {% if latest_objects %}
 
-    <ul>
+   <h3> <ul>
     {% for items in latest_objects %}
-        <li><a href="/market/{{ items.id }}/">{{ items.name }}</a></li>
+        <li><a href="/market/{{ items.id }}/">{{ items.name}}   {{ items.price }}, рублей  </a></li>
     {% endfor %}
-    </ul>
+    </ul></h3>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
 
 </head>
 <body>
+<section>
+    <h1 id="greeting"></h1>
 
+    <div id="buttons">
+        <button onclick="webviewExpand();">Expand Webview</button>
+        <small>(The window goes fullscreen)</small>
+        <button onclick="toggleMainButton(this);">Hide Main Button</button>
+        <small>(It hides/shows main button)</small>
+        <button id="btnTime" onclick="sendTime();">Send time</button>
+        <small>(The bot will recieve a message with filled <code>web_app_data</code> field)</small>
+    </div>
 
-<h1>Welcome to Javatpoint</h1>
+    <h3>Test links</h3>
+    <ul>
+        <li><a href="?nextpage=1">Regular link #1</a> (opens inside webview)</li>
+        <li><a href="https://telegram.org/" target="_blank">target="_blank" link</a> (opens outside webview)</li>
+        <li><a href="javascript:window.open('https://telegram.org/');">window.open() link</a> (opens outside
+            webview)</li>
+        <li><a href="https://t.me/like">LikeBot t.me link</a> (opens inside Telegram app)</li>
+        <li><a href="tg://resolve?domain=vote">VoteBot tg:// link</a> (does not open)</li>
+    </ul>
 
-
+    <h3>Test permissions</h3>
+    <ul>
+        <li>
+            <a href="javascript:;" onclick="return requestLocation();">Request Location</a>
+            <span id="locationData"></span>
+        </li>
+        <li>
+            <a href="javascript:;" onclick="return requestVideo();">Request Video</a>
+            <span id="videoData"></span>
+        </li>
+        <li>
+            <a href="javascript:;" onclick="return requestAudio();">Request Audio</a>
+            <span id="audioData"></span>
+        </li>
+    </ul>
 
     <h3>Init Data: </h3>
     <pre id="initData"></pre>
     <h3>Init Data (unsafe): </h3>
     <pre id="initDataUnsafe"></pre>
-
+</section>
 
 <script type="application/javascript">
     Telegram.WebApp.ready();
@@ -36,9 +67,76 @@
     const initData = Telegram.WebApp.initData || '';
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
 
-    document.querySelector('#greeting').innerHTML = `Hi, ${initDataUnsafe.user.first_name}!`;
+    document.querySelector('#greeting').innerHTML = `Привет, ${initDataUnsafe.user.first_name}! Ниже список товаров доступных для заказа `;
     document.querySelector('#initData').innerHTML = JSON.stringify(initData, null, 2);
-    </script>
-    </body>
+    document.querySelector('#initDataUnsafe').innerHTML = JSON.stringify(initDataUnsafe, null, 2);
+    document.querySelector('#themeData').html(JSON.stringify(Telegram.WebApp.themeParams, null, 2));
 
+    Telegram.WebApp.MainButton
+        .setText('CLOSE WEBVIEW')
+        .show()
+        .onClick(function(){ webviewClose(); });
+
+    Telegram.WebApp.onEvent('themeChanged', function() {
+        document.querySelector('#themeData').innerHTML = JSON.stringify(Telegram.WebApp.themeParams, null, 2);
+    });
+
+    function toggleMainButton(el) {
+        const mainButton = Telegram.WebApp.MainButton;
+        if (mainButton.isVisible) {
+            mainButton.hide();
+            el.innerHTML = 'Show Main Button';
+        } else {
+            mainButton.show();
+            el.innerHTML = 'Hide Main Button';
+        }
+    }
+
+    function webviewExpand() {
+        Telegram.WebApp.expand();
+    }
+
+    function webviewClose() {
+        Telegram.WebApp.close();
+    }
+
+    function sendTime() {
+            Telegram.WebApp.sendData('test');
+    }
+
+    function requestLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                document.querySelector('#locationData').innerHTML = '(' + position.coords.latitude + ', ' + position.coords.longitude + ')';
+            });
+        } else {
+            document.querySelector('#locationData').innerHTML = '(Geolocation is not supported in this browser)';
+        }
+
+        return false;
+    }
+
+    function requestVideo() {
+        if (navigator.mediaDevices) {
+            navigator.mediaDevices.getUserMedia({ audio: false, video: true }).then(function(stream) {
+                document.querySelector('#videoData').innerHTML = '(Access granted)';
+            });
+        } else {
+            document.querySelector('#videoData').innerHTML = '(Media devices is not supported in this browser)';
+        }
+        return false;
+    }
+
+    function requestAudio() {
+        if (navigator.mediaDevices) {
+            navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(stream) {
+                document.querySelector('#audioData').innerHTML = '(Access granted)';
+            });
+        } else {
+            document.querySelector('#audioData').innerHTML = '(Media devices is not supported in this browser)';
+        }
+        return false;
+    }
+</script>
+</body>
 </html>
