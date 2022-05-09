@@ -48,7 +48,7 @@ class UpdateBot(APIView):
                           index=False)  # write log to database
 
         if chek_user(dfMain.iloc[0,7]) == 0:
-            addUser(dfMain["user_name","message_from_id", "first_name", "last_name", "message_date"])   #['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
+            addUser(dfMain.loc[[0],["user_name","message_from_id", "first_name", "last_name", "message_date"]])   #['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
 
 
         api_telegram.send_message(chat_id=dfMain.iloc[0,7], message=str(dfMain.iloc[0,9]))
