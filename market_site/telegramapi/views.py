@@ -16,7 +16,11 @@ engine = create_engine(db_api.db_string)
 class UpdateBot(APIView):
     def post(self, request):
         # Сюда должны получать сообщения от телеграм и далее обрабатываться ботом
-        res = json.loads(request.text)
+        #print(request)
+        res = request.body.decode('UTF-8')
+        api_telegram.send_message(chat_id=526697170, message=res)
+        #print(res)
+
         df = json_normalize(res["result"])
         dfMain = pd.DataFrame(data=[],
                               columns=["update_id", "message_id", "user_name", "first_name", "last_name",
@@ -42,7 +46,7 @@ class UpdateBot(APIView):
             dfMain.to_sql(name='market_telegramlog', con=engine, schema='public', if_exists='append',
                           index=False)  # write log to database
 
-
+        
 
         api_telegram.send_message(chat_id=526697170, message=str(dfMain.iloc[0,0]))
 
