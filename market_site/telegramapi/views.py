@@ -21,7 +21,7 @@ class UpdateBot(APIView):
 
         api_telegram.send_message(chat_id=526697170, message=res)
         #print(res)
-
+        res = json.loads(res)
         df = json_normalize(res)
         dfMain = pd.DataFrame(data=[],
                               columns=["update_id", "message_id", "user_name", "first_name", "last_name",
@@ -49,6 +49,6 @@ class UpdateBot(APIView):
 
         
 
-        api_telegram.send_message(chat_id=526697170, message=str(dfMain.iloc[0,0]))
+        api_telegram.send_message(chat_id=526697170, message=str(dfMain.iloc[0,8]))
 
         return Response({'code': 200})
