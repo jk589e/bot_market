@@ -1,17 +1,24 @@
 from django.db import models
-
+from django.utils.safestring import mark_safe
 # Create your models here.
 
 class Items(models.Model):
     article = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000)
+    description = models.TextField(max_length=1000, null=True, blank=True)
     price = models.DecimalField(max_digits=15, decimal_places=2)
     vat = models.DecimalField(max_digits=15, decimal_places=2)
-    discount = models.DecimalField(max_digits=15, decimal_places=2)
+    discount = models.DecimalField(max_digits=15, decimal_places=2,null=True, blank=True)
+    photo1 = models.ImageField(upload_to='images/', null=True, blank= True)
 
     def __str__(self):
         return self.name
+
+    def image_preview(self):
+        if self.photo1:
+            return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.photo1.url))
+        else:
+            return '(No image)'
 
 class User(models.Model):
     user_id = models.BigIntegerField()
@@ -25,7 +32,11 @@ class User(models.Model):
     status = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
-        return self.user_name
+        if self.user_name == None:
+            res = str(self.user_id)
+        else:
+            res = self.user_name
+        return (res)
 
 class TelegramLog(models.Model):
     update_id = models.BigIntegerField()

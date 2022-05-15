@@ -1,12 +1,16 @@
 from django.contrib import admin
-
+from django.utils.html import format_html
 # Register your models here.
 from .models import Items, User, TelegramLog
 
 #admin.site.register(Items)
 @admin.register(Items)
 class marketItems(admin.ModelAdmin):
-    list_display = ("id", "name", "description", "price", "discount")
+    def photo1(self, obj):
+        return format_html('<img src="{}" />'.format(obj.image.url))
+
+    photo1.short_description = 'Image'
+    list_display = ("image_preview", "id", "name", "description", "price", "discount")
 
 @admin.register(User)
 class marketUsers(admin.ModelAdmin):
