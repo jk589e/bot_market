@@ -18,7 +18,13 @@ class Items(models.Model):
         if self.photo1:
             return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.photo1.url))
         else:
-            return '(No image)'
+            return "(no image)"
+
+    def image_preview1(self):
+        if self.photo1:
+            self.photo1.url
+        else:
+            return "/media/images/default_pic.png"
 
 class User(models.Model):
     user_id = models.BigIntegerField()
