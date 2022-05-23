@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from import_export.admin import ImportExportMixin
 # Register your models here.
 from .models import Items, User, TelegramLog
 
 #admin.site.register(Items)
 @admin.register(Items)
-class marketItems(admin.ModelAdmin):
+class marketItems(ImportExportMixin, admin.ModelAdmin):
     def photo1(self, obj):
         return format_html('<img src="{}" />'.format(obj.image.url))
 
