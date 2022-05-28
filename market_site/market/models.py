@@ -10,6 +10,16 @@ class Items(models.Model):
     vat = models.DecimalField(max_digits=15, decimal_places=2)
     discount = models.DecimalField(max_digits=15, decimal_places=2,null=True, blank=True)
     photo1 = models.ImageField(upload_to='images/', null=True, blank= True)
+    photo2 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo3 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo4 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo5 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo6 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo7 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo8 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo9 = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo10 = models.ImageField(upload_to='images/', null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -22,9 +32,9 @@ class Items(models.Model):
 
     def image_preview1(self):
         if self.photo1:
-            self.photo1.url
+            return mark_safe('<img src="{0}" width="450" height="327" />'.format(self.photo1.url))
         else:
-            return "/media/images/default_pic.png"
+            return "(no image)"
 
 class User(models.Model):
     user_id = models.BigIntegerField()
