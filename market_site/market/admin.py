@@ -12,12 +12,12 @@ class marketItems(ImportExportMixin, admin.ModelAdmin):
 
     photo1.short_description = 'Image'
     list_display = ("image_preview", "id", "name", "description", "price", "discount")
-    search_fields = ['article', 'name',]
+    search_fields = ['article', 'name']
 
 @admin.register(User)
 class marketUsers(admin.ModelAdmin):
     list_display = ("id", "user_id", "user_name", "first_name", "last_name", "email", "phone_number", "status")
-
+    search_fields = ['user_id', 'username', 'first_name','last_name', 'email','phone_number']
 @admin.register(TelegramLog)
 class marketLogs(admin.ModelAdmin):
     list_display = ("id", "message_text", "message_date" ,"message_from_id", "user_name", "first_name", "last_name")
