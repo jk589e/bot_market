@@ -12,6 +12,7 @@ class marketItems(ImportExportMixin, admin.ModelAdmin):
 
     photo1.short_description = 'Image'
     list_display = ("image_preview", "id", "name", "description", "price", "discount")
+    search_fields = ['article', 'name',]
 
 @admin.register(User)
 class marketUsers(admin.ModelAdmin):
