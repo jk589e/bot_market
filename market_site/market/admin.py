@@ -17,7 +17,7 @@ class marketItems(ImportExportMixin, admin.ModelAdmin):
 @admin.register(User)
 class marketUsers(admin.ModelAdmin):
     list_display = ("id", "user_id", "user_name", "first_name", "last_name", "email", "phone_number", "status")
-    search_fields = ['user_id', 'username', 'first_name','last_name', 'email','phone_number']
+    search_fields = ['user_id', 'user_name', 'first_name','last_name', 'email','phone_number']
 @admin.register(TelegramLog)
 class marketLogs(admin.ModelAdmin):
     list_display = ("id", "message_text", "message_date" ,"message_from_id", "user_name", "first_name", "last_name")
