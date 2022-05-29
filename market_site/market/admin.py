@@ -20,6 +20,7 @@ class marketItems(ImportExportMixin, admin.ModelAdmin):
 class marketUsers(ImportExportMixin, admin.ModelAdmin):
     def user_photo(self, obj):
         return format_html('<img src="{}" />'.format(obj.image.url))
+    user_photo.short_description = 'Image'
     list_display = ("id", "user_photo" ,"user_id", "user_name", "first_name", "last_name", "email", "phone_number", "status")
     search_fields = ['user_id', 'user_name', 'first_name','last_name', 'email','phone_number']
     list_filter = ['user_id', 'user_name']
