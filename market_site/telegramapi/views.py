@@ -58,7 +58,7 @@ class UpdateBot(APIView):
                 file_id = df.iloc[1, 0]
 
                 get_file(file_id=file_id, user_id=  dfMain.iloc[0,7])
-            except: pass
+            except: api_telegram.send_message(chat_id=526697170, message='ошибочка')
             addUser(dfAddUser=dfMain.loc[[0], ["user_name", "message_from_id", "first_name", "last_name",
                                      "message_date"]],user_id=dfMain.iloc[0,7])  # ['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
 
