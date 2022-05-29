@@ -49,9 +49,10 @@ def chek_user(user_id):
 
 
 
-def addUser(dfAddUser): # add new user to user tables
+def addUser(dfAddUser,user_id): # add new user to user tables
     dfAddUser.rename(columns={ 'message_from_id': 'user_id', 'message_date':'first_message_time'},  inplace=True)
     dfAddUser['status']=0
+    dfAddUser['user_photo'] = '/userphotos/' + user_id + '.jpg'
     dfAddUser.to_sql(name='market_user', con=engine, schema='public', if_exists='append', index=None)
 
 def get_replies():
