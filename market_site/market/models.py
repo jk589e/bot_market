@@ -46,6 +46,7 @@ class User(models.Model):
     first_message_time = models.DateTimeField(auto_now=True,blank=True)
     last_active_time = models.DateTimeField(null=True, blank=True)
     status = models.IntegerField(null=True,blank=True)
+    user_photo = models.ImageField(upload_to='userphotos/', null=True, blank=True)
 
     def __str__(self):
         if self.user_name == None:
@@ -53,6 +54,11 @@ class User(models.Model):
         else:
             res = self.user_name
         return (res)
+    def photo_preview(self):
+        if self.user_photo:
+            return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.user_photo.url))
+        else:
+            return "(no photo)"
 
 class TelegramLog(models.Model):
     update_id = models.BigIntegerField()

@@ -4,6 +4,7 @@ from django.shortcuts import render
 from . import api_telegram
 from . import db_api
 from .db_api import joinCol, chek_user,addUser
+from .api_telegram import get_file , get_users_photo
 import json, pandas as pd
 from pandas import json_normalize
 import datetime as dt
@@ -48,8 +49,18 @@ class UpdateBot(APIView):
                           index=False)  # write log to database
 
         if chek_user(dfMain.iloc[0,7]) == 0:
-            addUser(dfMain.loc[[0],["user_name","message_from_id", "first_name", "last_name", "message_date"]])   #['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
 
+            try:
+                request = get_users_photo(user_id = dfMain.iloc[0,7])
+                res = request.text
+                res = json.loads(res)
+                df = json_normalize(res["result"]["photos"][0])
+                file_id = df.iloc[1, 0]
+
+                get_file(file_id=file_id, user_id=  dfMain.iloc[0,7])
+            except: pass
+            addUser(dfMain.loc[[0], ["user_name", "message_from_id", "first_name", "last_name",
+                                     "message_date"]])  # ['user_name', 'message_from_id', 'first_name', 'last_name', 'message_date']
 
         api_telegram.send_message(chat_id=dfMain.iloc[0,7], message=str(dfMain.iloc[0,9]))
 
