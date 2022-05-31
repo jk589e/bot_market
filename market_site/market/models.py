@@ -76,6 +76,27 @@ class TelegramLog(models.Model):
     longitude = models.DecimalField(max_digits=12, decimal_places=8, null=True)
     processed = models.IntegerField(null=True)
 
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now=True)
+    qty = models.DecimalField(max_digits=15, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    discount = models.DecimalField(max_digits=15, decimal_places=2)
+    vat = models.DecimalField(max_digits=15, decimal_places=2)
+
+class BasketPosition(models.Model):
+    basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
+    item = models.ForeignKey(Items, on_delete=models.CASCADE)
+    position = models.IntegerField()
+    qty = models.DecimalField(max_digits=15, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    discount = models.DecimalField(max_digits=15, decimal_places=2)
+    vat = models.DecimalField(max_digits=15, decimal_places=2)
+    date_add = models.DateTimeField(auto_now=True)
+
+
+
+
 
 
 

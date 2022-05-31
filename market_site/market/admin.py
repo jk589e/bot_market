@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from import_export.admin import ImportExportMixin
 # Register your models here.
-from .models import Items, User, TelegramLog
+from .models import Items, User, TelegramLog, Basket, BasketPosition
 
 #admin.site.register(Items)
 @admin.register(Items)
@@ -29,3 +29,13 @@ class marketUsers(ImportExportMixin, admin.ModelAdmin):
 class marketLogs(ImportExportMixin, admin.ModelAdmin):
     list_display = ("id", "message_text", "message_date" ,"message_from_id", "user_name", "first_name", "last_name")
     list_filter = ['message_from_id', 'user_name']
+@admin.register(Basket)
+class Basket(ImportExportMixin, admin.ModelAdmin):
+    list_display = ("id", "user", "qty", "amount", "discount", "created_date")
+    list_filter = ['user','created_date']
+
+@admin.register(BasketPosition)
+class BasketPosition(ImportExportMixin, admin.ModelAdmin):
+    list_display = ("basket", "item", "qty", "amount", "discount", "date_add")
+    #list_filter = ['item', 'date_add']
+    search_fields = ['item']
