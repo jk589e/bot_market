@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from import_export.admin import ImportExportMixin
+from django.contrib.auth.models import User as use
 # Register your models here.
-from .models import Items, User, TelegramLog, Basket, BasketPosition
-
+from django.contrib.sessions.models import Session
+from .models import Items, User as us, TelegramLog, Basket, BasketPosition
+import pprint
 #admin.site.register(Items)
 @admin.register(Items)
 class marketItems(ImportExportMixin, admin.ModelAdmin):
@@ -16,7 +18,7 @@ class marketItems(ImportExportMixin, admin.ModelAdmin):
     search_fields = ['article', 'name']
 
 
-@admin.register(User)
+@admin.register(us)
 class marketUsers(ImportExportMixin, admin.ModelAdmin):
     def user_photo(self, obj):
         return format_html('<img src="{}" />'.format(obj.image.url))
@@ -39,3 +41,14 @@ class BasketPosition(ImportExportMixin, admin.ModelAdmin):
     list_display = ("basket", "item", "qty", "amount", "discount", "date_add")
     #list_filter = ['item', 'date_add']
     search_fields = ['item']
+@admin.register(Session)
+class SessionAdmin(admin.ModelAdmin):
+    def user(self, obj):
+        session_user = obj.get_decoded().get('_auth_user_id')
+        user = use.objects.get(pk=session_user)
+        return user.username
+    def _session_data(self, obj):
+        return pprint.pformat(obj.get_decoded()).replace('\n', '<br>\n')
+    _session_data.allow_tags = True
+    list_display = ['user', 'session_key', '_session_data', 'expire_date']
+    readonly_fields = ['_session_data']
