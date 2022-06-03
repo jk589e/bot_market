@@ -94,7 +94,8 @@ class BasketPosition(models.Model):
     vat = models.DecimalField(max_digits=15, decimal_places=2)
     date_add = models.DateTimeField(auto_now=True)
 
-
+class Formtest(models.Model):
+    test = models.CharField(max_length=100)
 
 
 

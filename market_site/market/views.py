@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Items
+from .models import Items, Formtest
 from django.template import loader
 from django.http import Http404
 from django.shortcuts import render
@@ -19,3 +19,18 @@ def detail(request, item_id):
     except Items.DoesNotExist:
         raise Http404("Item does not exist")
     return render(request, 'market/detail1.html', {'item': item})
+
+
+def test(request):
+    if request.method == 'POST':
+        #item= Items.objects.get(pk=2188)
+        text = request.POST.get('testtext')
+        t = Formtest(test = text)
+        t.save()
+        return render(request, 'market/testform.html')
+
+
+def test_form(request):
+    return render(request, 'market/testform.html')
+
+

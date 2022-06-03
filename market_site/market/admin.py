@@ -26,6 +26,11 @@ class marketUsers(ImportExportMixin, admin.ModelAdmin):
     user_photo.short_description = 'Image'
     list_display = ("id", "photo_preview" ,"user_id", "user_name", "first_name", "last_name", "email", "phone_number", "status")
     search_fields = ['user_id', 'user_name', 'first_name','last_name', 'email','phone_number']
+
+    def get_search_results(self, request, queryset, search_term):
+        print("In get search results")
+        results = super().get_search_results(request, queryset, search_term)
+        return results
     list_filter = ['user_id', 'user_name']
 @admin.register(TelegramLog)
 class marketLogs(ImportExportMixin, admin.ModelAdmin):
@@ -41,6 +46,9 @@ class BasketPosition(ImportExportMixin, admin.ModelAdmin):
     list_display = ("basket", "item", "qty", "amount", "discount", "date_add")
     #list_filter = ['item', 'date_add']
     search_fields = ['item']
+
+
+
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
     def user(self, obj):
