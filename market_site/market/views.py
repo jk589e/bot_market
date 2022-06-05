@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 def index(request):
     latest_objects = Items.objects.all()
-    template = loader.get_template('market/index.html')
+    template = loader.get_template('market/index_202206.html')
     context = {
         'latest_objects': latest_objects,
     }
