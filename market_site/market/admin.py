@@ -36,14 +36,14 @@ class marketUsers(ImportExportMixin, admin.ModelAdmin):
 class marketLogs(ImportExportMixin, admin.ModelAdmin):
     list_display = ("id", "message_text", "message_date" ,"message_from_id", "user_name", "first_name", "last_name")
     list_filter = ['message_from_id', 'user_name']
-@admin.register(Basket)
+#@admin.register(Basket)
 class Basket(ImportExportMixin, admin.ModelAdmin):
     list_display = ("id", "user", "qty", "amount", "discount", "created_date")
     list_filter = ['user','created_date']
 
 @admin.register(BasketPosition)
 class BasketPosition(ImportExportMixin, admin.ModelAdmin):
-    list_display = ("basket", "item", "qty", "amount", "discount", "date_add")
+    list_display = ("user", "item", "qty", "amount", "discount", "date_add")
     #list_filter = ['item', 'date_add']
     search_fields = ['item']
 

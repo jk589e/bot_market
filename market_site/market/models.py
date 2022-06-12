@@ -87,6 +87,7 @@ class Basket(models.Model):
 class BasketPosition(models.Model):
     basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
     item = models.ForeignKey(Items, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default= 12)
     position = models.IntegerField()
     qty = models.DecimalField(max_digits=15, decimal_places=2)
     amount = models.DecimalField(max_digits=15, decimal_places=2)

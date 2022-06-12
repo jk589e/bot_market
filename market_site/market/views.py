@@ -1,12 +1,12 @@
 from django.http import HttpResponse
-from .models import Items, Formtest
+from .models import Items, Formtest, BasketPosition, User
 from django.template import loader
 from django.http import Http404
 from django.shortcuts import render
 
 def index(request):
     latest_objects = Items.objects.all()
-    template = loader.get_template('market/index_202206.html')
+    template = loader.get_template('market/index_20220612.html')
     context = {
         'latest_objects': latest_objects,
     }
@@ -23,10 +23,18 @@ def detail(request, item_id):
 
 def test(request):
     if request.method == 'POST':
-        #item= Items.objects.get(pk=2188)
-        text = request.POST.get('testtext')
-        t = Formtest(test = text)
-        t.save()
+
+        print(request.POST)
+        item_id = request.POST.get('item')
+        user_id = request.POST.get('user')
+        item = Items.objects.get(pk=item_id)
+        user = User.objects.get(user_id = user_id)
+        basket = BasketPosition(item_id = item_id, user_id = user.id, qty= 1, amount = item.price + item.discount,
+                                discount= item.discount, vat= item.vat, position= 1, basket_id = 1)
+
+
+
+        basket.save()
         return render(request, 'market/testform.html')
 
 
