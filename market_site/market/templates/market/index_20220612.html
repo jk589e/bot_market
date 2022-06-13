@@ -190,6 +190,7 @@ h2::after {
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Ждут <b>Вашего</b> заказа <a id="userid"></a> </h2>
+			 <p id="baskethead"></p>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
 			<!-- Carousel indicators -->
 			<ol class="carousel-indicators">
@@ -257,14 +258,14 @@ h2::after {
   			Telegram.WebApp.ready();
   			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
   			document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.username} (${initDataUnsafe.user.id})!`;
-			//const user_id = ${initDataUnsafe.user.id};
-
+			const user_id = initDataUnsafe.user.id;
+			document.querySelector('#baskethead').innerHTML = `Привет ,${getBasketHeaders(user_id)}!`;
 
 			function reply_click(clicked_id) {
 				const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
             	var id = clicked_id;
-            	//var user_id = 5159671328;
-            	var user_id = initDataUnsafe.user.id;
+            	var user_id = 5159671328;
+            	//var user_id = initDataUnsafe.user.id;
             	 $.ajax({type: "POST",
 
 
@@ -281,7 +282,29 @@ h2::after {
 					  alert($(this).serialize());
 					  }
 				  });
-            }
+            };
+
+            function getBasketHeaders(user_id) {
+				//var user1 = 526697170
+				$.ajax(
+                {
+                    url:"basket/getHeaders/",
+                    type:'get',
+                    data:{user : user_id},
+                    success:function (data) {
+                        $("#baskethead").text(data.content.summ)
+                        ;
+                    },
+                    error:function (error) {
+                       // $("#baskethead").text(error)
+                       ;
+                    }
+                });
+
+
+            };
+
+
 
   </script>
 {% endblock javascript %}

@@ -3,6 +3,9 @@ from .models import Items, Formtest, BasketPosition, User
 from django.template import loader
 from django.http import Http404
 from django.shortcuts import render
+from django.db.models import Avg, Count, Sum
+
+from django.http import JsonResponse
 
 def index(request):
     latest_objects = Items.objects.all()
@@ -24,7 +27,7 @@ def detail(request, item_id):
 def saveBasket(request):
     if request.method == 'POST':
 
-        print(request.POST)
+        #print(request.POST)
         item_id = request.POST.get('item')
         user_id = request.POST.get('user')
         if user_id == None:
@@ -40,6 +43,16 @@ def saveBasket(request):
         basket.save()
         return render(request, 'market/testform.html')
 
+def getBasketHeaders(request):
+    if request.method == 'GET':
+        user_id = request.GET.get('user')
+        user_id = 526697170
+        user = User.objects.get(user_id=user_id)
+        #basket = BasketPosition.objects.get(user_id=user.id)
+        summ = BasketPosition.objects.filter(user_id=user).aggregate(summ=Sum('amount'))
+        result = {'code': 200, "content": summ }
+        print(summ)
+        return JsonResponse(result)
 
 
 
