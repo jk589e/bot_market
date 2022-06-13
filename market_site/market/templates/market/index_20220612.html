@@ -256,7 +256,7 @@ h2::after {
   <script>
   			Telegram.WebApp.ready();
   			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-  			document.querySelector('#userid').innerHTML = ${initDataUnsafe.user.first_name}!
+  			document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.first_name}!`;
 
 
 
@@ -283,6 +283,9 @@ h2::after {
 
   </script>
 {% endblock javascript %}
+
+
+
 
 
 
