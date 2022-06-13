@@ -189,8 +189,7 @@ h2::after {
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>Ждут <b>Вашего</b> заказа <a id="userid"></a> </h2>
-			 <p id="baskethead"></p>
+			<h2>Ждут <b>Вашего</b> заказа <a id="userid"></a> <a id="baskethead"></a> </h2>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
 			<!-- Carousel indicators -->
 			<ol class="carousel-indicators">
@@ -257,7 +256,7 @@ h2::after {
   <script>
   			Telegram.WebApp.ready();
   			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-  			document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.username} (${initDataUnsafe.user.id})!`;
+  			document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.username} (${initDataUnsafe.user.id})! сумма корзины: `;
 			const user_id = initDataUnsafe.user.id;
 			document.querySelector('#baskethead').innerHTML = `Привет ,${getBasketHeaders(user_id)}!`;
 
