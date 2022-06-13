@@ -254,9 +254,9 @@ h2::after {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-  			//Telegram.WebApp.ready();
-  			//const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-  			//document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.username} (${initDataUnsafe.user.id})!`;
+  			Telegram.WebApp.ready();
+  			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  			document.querySelector('#userid').innerHTML = `Привет ,${initDataUnsafe.user.username} (${initDataUnsafe.user.id})!`;
 			//const user_id = ${initDataUnsafe.user.id};
 
 
