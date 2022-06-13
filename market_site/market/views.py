@@ -46,7 +46,7 @@ def saveBasket(request):
 def getBasketHeaders(request):
     if request.method == 'GET':
         user_id = request.GET.get('user')
-        user_id = 526697170
+        #user_id = 526697170
         user = User.objects.get(user_id=user_id)
         #basket = BasketPosition.objects.get(user_id=user.id)
         summ = BasketPosition.objects.filter(user_id=user).aggregate(summ=Sum('amount'))
