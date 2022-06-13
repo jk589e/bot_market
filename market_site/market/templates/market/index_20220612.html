@@ -262,6 +262,7 @@ h2::after {
 
 			function reply_click(clicked_id, user_id) {
             	var id = clicked_id
+            	Telegram.WebApp.ready();
             	const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
 
             	var user_id = ${initDataUnsafe.user.id};
