@@ -27,6 +27,9 @@ def test(request):
         print(request.POST)
         item_id = request.POST.get('item')
         user_id = request.POST.get('user')
+        if user_id == None:
+            user_id = 5159671328
+
         item = Items.objects.get(pk=item_id)
         user = User.objects.get(user_id = user_id)
         basket = BasketPosition(item_id = item_id, user_id = user.id, qty= 1, amount = item.price + item.discount,
