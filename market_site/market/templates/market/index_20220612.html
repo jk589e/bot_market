@@ -188,7 +188,7 @@ h2::after {
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>Ждут <b>Вашего</b> заказа </h2>
+			<h2>Ждут <b>Вашего</b> заказа <a id="userid"></a> </h2>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
 			<!-- Carousel indicators -->
 			<ol class="carousel-indicators">
@@ -253,6 +253,11 @@ h2::after {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+  			Telegram.WebApp.ready();
+  			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  			document.querySelector('#userid').innerHTML = ${initDataUnsafe.user.first_name}!
+
+
 
 			function reply_click(clicked_id) {
             	var id = clicked_id
