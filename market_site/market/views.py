@@ -21,7 +21,7 @@ def detail(request, item_id):
     return render(request, 'market/detail1.html', {'item': item})
 
 
-def test(request):
+def saveBasket(request):
     if request.method == 'POST':
 
         print(request.POST)
@@ -41,7 +41,6 @@ def test(request):
         return render(request, 'market/testform.html')
 
 
-def test_form(request):
-    return render(request, 'market/testform.html')
+
 
 
