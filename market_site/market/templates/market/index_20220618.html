@@ -270,7 +270,7 @@ h2::after {
   			const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
   			document.querySelector('#userid').innerHTML = `${initDataUnsafe.user.username} (${initDataUnsafe.user.id})!`;
 			const user_id = initDataUnsafe.user.id;
-			document.getElementById('userPhoto').src = "/media/userphotos/" + user_id + ".jpg";
+			document.getElementById('userphoto').src = "/media/userphotos/" + user_id + ".jpg";
 			document.querySelector('#baskethead').innerHTML = `Привет ,${getBasketHeaders(user_id)}!`;
 
 			function reply_click(clicked_id) {
