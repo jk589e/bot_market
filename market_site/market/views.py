@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 def index(request):
     latest_objects = Items.objects.all()
-    template = loader.get_template('market/index_20220612.html')
+    template = loader.get_template('market/index_20220618.html')
     context = {
         'latest_objects': latest_objects,
     }
