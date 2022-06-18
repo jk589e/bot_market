@@ -322,8 +322,7 @@ h2::after {
                     type:'get',
                     data:{user : user_id},
                     success:function (data) {
-                        $("#baskethead").text(`Корзина: ${Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(data.content.summ))} руб`)
-                        //Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number));
+                        $("#baskethead").text(`Корзина: ${data.content.summ} руб.`)
                         ;
                     },
                     error:function (error) {
