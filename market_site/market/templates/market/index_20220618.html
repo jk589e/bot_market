@@ -310,7 +310,7 @@ h2::after {
                     type:'get',
                     data:{user : user_id},
                     success:function (data) {
-                        $("#baskethead").text(data.content.summ)
+                        $("#baskethead").text(`Корзина: ${data.content.summ}`)
                         ;
                     },
                     error:function (error) {
