@@ -59,7 +59,7 @@ def gift(request):
     template = loader.get_template('market/gift.html')
 
     #output = ', '.join([q.name for q in latest_objects])
-    return HttpResponse(template.render(request))
+    return render(request, 'market/gift.html')
 #def getBasket(request, usert_id):
 #   basket_positions = BasketPosition.get(user)
 
