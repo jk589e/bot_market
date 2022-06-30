@@ -10,5 +10,5 @@ urlpatterns = [
     path('<int:item_id>/', views.detail, name='detail'),
     path('basket/save/', views.saveBasket, name='test'),
     path('basket/getHeaders/', views.getBasketHeaders, name='basketheaders'),
-    path('lasrisagift20220722/', views.gift, name='gift'),
+    path('larisagift20220722/', views.gift, name='gift'),
 ]
