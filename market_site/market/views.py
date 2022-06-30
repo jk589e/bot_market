@@ -4,7 +4,9 @@ from django.template import loader
 from django.http import Http404
 from django.shortcuts import render
 from django.db.models import Avg, Count, Sum
-from ..telegramapi.api_telegram import send_message
+
+from .telegram_api import  send_message
+
 from django.http import JsonResponse
 
 def index(request):
