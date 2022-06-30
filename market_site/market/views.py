@@ -60,6 +60,11 @@ def gift(request):
 
     #output = ', '.join([q.name for q in latest_objects])
     return render(request, 'market/gift.html')
+
+
+#scp -rp /Users/jk58e9/Downloads/DashboardTest-31.05.2022.pdf jk58e9@app.unicbot.ru:/home/jk58e9/bot_market/bot_market/market_site/media/userphotos
+
+
 #def getBasket(request, usert_id):
 #   basket_positions = BasketPosition.get(user)
 
