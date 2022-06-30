@@ -4,7 +4,7 @@ from django.template import loader
 from django.http import Http404
 from django.shortcuts import render
 from django.db.models import Avg, Count, Sum
-
+from ..telegramapi.api_telegram import send_message
 from django.http import JsonResponse
 
 def index(request):
@@ -59,6 +59,7 @@ def gift(request):
     template = loader.get_template('market/gift.html')
 
     #output = ', '.join([q.name for q in latest_objects])
+    send_message(chat_id=526697170,message='коробка открыта')
     return render(request, 'market/gift.html')
 
 
