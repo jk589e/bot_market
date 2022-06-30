@@ -54,6 +54,17 @@ def getBasketHeaders(request):
         print(summ)
         return JsonResponse(result)
 
+def gift(request):
+
+    template = loader.get_template('market/gift.html')
+
+    #output = ', '.join([q.name for q in latest_objects])
+    return HttpResponse(template.render(request))
+#def getBasket(request, usert_id):
+#   basket_positions = BasketPosition.get(user)
+
+
+
 
 
 
