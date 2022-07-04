@@ -11,7 +11,7 @@ from django.http import JsonResponse
 
 def index(request):
     latest_objects = Items.objects.all()
-    template = loader.get_template('market/index_20220618.html')
+    template = loader.get_template('market/index_20220704.html')
     context = {
         'latest_objects': latest_objects,
     }
@@ -68,8 +68,17 @@ def gift(request):
 #scp -rp /Users/jk58e9/Downloads/DashboardTest-31.05.2022.pdf jk58e9@app.unicbot.ru:/home/jk58e9/bot_market/bot_market/market_site/media/userphotos
 
 
-#def getBasket(request, usert_id):
-#   basket_positions = BasketPosition.get(user)
+def getBasket(request, usert_id):
+   user_id = User.objects.get(user_id=usert_id)
+   print(usert_id)
+   print(user_id.id)
+   basket_positions = BasketPosition.objects.filter(user_id=user_id.id).order_by('date_add')
+   template = loader.get_template('market/basket.html')
+   context = {
+       'basket': basket_positions,
+   }
+   # output = ', '.join([q.name for q in latest_objects])
+   return HttpResponse(template.render(context, request))
 
 
 

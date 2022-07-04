@@ -11,4 +11,5 @@ urlpatterns = [
     path('basket/save/', views.saveBasket, name='test'),
     path('basket/getHeaders/', views.getBasketHeaders, name='basketheaders'),
     path('larisagift20220722/', views.gift, name='gift'),
+    path('basket/<int:usert_id>/', views.getBasket, name='basket')
 ]
