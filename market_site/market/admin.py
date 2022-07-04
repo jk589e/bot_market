@@ -45,7 +45,7 @@ class Basket(ImportExportMixin, admin.ModelAdmin):
 class BasketPosition(ImportExportMixin, admin.ModelAdmin):
     list_display = ("user", "item", "qty", "amount", "discount", "date_add")
     list_filter = ['user']
-    search_fields = ['item__name', 'user__name']
+    search_fields = ['item__name', 'user__user_name']
 
 
 
