@@ -288,6 +288,7 @@ h2::after {
 			const user_id = initDataUnsafe.user.id;
 			document.getElementById('userphoto').src = "/media/userphotos/" + user_id + ".jpg";
 			document.querySelector('#baskethead').innerHTML = `Привет ,${getBasketHeaders(user_id)}!`;
+			document.getElementById('basket').href = "basket/" + user_id + "/";
 
 			function reply_click(clicked_id) {
 				const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
@@ -323,8 +324,7 @@ h2::after {
                     data:{user : user_id},
                     success:function (data) {
                         $("#baskethead").text(`Корзина: ${data.content.summ} руб.`);
-                        $("#basket").href(`basket${user_id}/`)
-                        ;
+
                     },
                     error:function (error) {
                         $("#baskethead").text(error)
