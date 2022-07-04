@@ -44,8 +44,8 @@ class Basket(ImportExportMixin, admin.ModelAdmin):
 @admin.register(BasketPosition)
 class BasketPosition(ImportExportMixin, admin.ModelAdmin):
     list_display = ("user", "item", "qty", "amount", "discount", "date_add")
-    #list_filter = ['item', 'date_add']
-    search_fields = ['item']
+    list_filter = ['user']
+    search_fields = ['item', 'user']
 
 
 
