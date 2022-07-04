@@ -322,7 +322,7 @@ h2::after {
                     type:'get',
                     data:{user : user_id},
                     success:function (data) {
-                        $("#baskethead").text(`Корзина: ${data.content.summ} руб.`)
+                        $("#baskethead").text(`Корзина: ${data.content.summ} руб.`);
                         $("#basket").href(`basket${user_id}/`)
                         ;
                     },
