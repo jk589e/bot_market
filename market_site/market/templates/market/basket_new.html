@@ -47,7 +47,7 @@
         }
         .Cart-Items{
          margin: auto;
-         width: 92%;
+         width: 95%;
          height: 30%;
          display: flex;
          justify-content: space-between;
@@ -192,6 +192,7 @@
         <h5 class="Action">Remove all</h5>
     </div>
     {% for item in basket %}
+    <hr>
     <div class="Cart-Items">
         <div class="image-box">
             {{item.item.photo_basket}}
