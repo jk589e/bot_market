@@ -73,7 +73,7 @@ def getBasket(request, usert_id):
    print(usert_id)
    print(user_id.id)
    basket_positions = BasketPosition.objects.filter(user_id=user_id.id).order_by('date_add')
-   template = loader.get_template('market/basket.html')
+   template = loader.get_template('market/basket_new.html')
    context = {
        'basket': basket_positions,
    }
