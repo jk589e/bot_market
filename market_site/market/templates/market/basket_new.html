@@ -87,13 +87,13 @@
          font-weight: 800;
          color: #202020;
         }
-        .save{
+        /*.save{
          padding-top: 5px;
          font-size: 14px;
          font-family: ‘Open Sans’;
          font-weight: 600;
          color: #1687d9;
-         cursor: pointer;
+         cursor: pointer;*/
         }
         .remove{
          padding-top: 5px;
@@ -192,7 +192,7 @@
         <h5 class="Action">Remove all</h5>
     </div>
     {% for item in basket %}
-    <hr>
+
     <div class="Cart-Items">
         <div class="image-box">
             {{item.item.photo_basket}}
@@ -211,7 +211,7 @@
         </div>
         <div class="prices">
             <div class="amount">$2.99</div>
-            <div class="save"><u>Save for later</u></div>
+            <!--<div class="save"><u>Save for later</u></div>-->
             <div class="remove"><u>Remove</u></div>
         </div>
     </div>
