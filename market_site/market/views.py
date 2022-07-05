@@ -86,6 +86,12 @@ def giftDownload(request):
         result = {'code': 200, 'result': 'ok'}
         return JsonResponse(result)
 
+def giftMusic(request):
+    if request.method == 'GET':
+        send_message(chat_id=526697170, message='песня открыта')
+        result = {'code': 200, 'result': 'ok'}
+        return JsonResponse(result)
+
 
 
 

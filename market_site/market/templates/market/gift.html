@@ -38,7 +38,7 @@
 мы неизбежно сталкиваемся с цифровым миром. Надеюсь приложить руку к его формированию) Надеюсь не доставил много хлопот с открыванием шкатулки.
 Мне тоже её пришлось открыть, прежде чем туда что-то положить. Открыл я её правда за время совещания по CSI). Жаль, что удалось с тобой поработать так мало.
 Если ты до сюда еще дочитала, то
-далее музыкальная пауза <b>(слушать строго в наушниках)</b> - <a href="https://mrr.morsmusic.org/track/271664">музычка</a>
+далее музыкальная пауза <b>(слушать строго в наушниках)</b> - <a href="https://mrr.morsmusic.org/track/271664" id="giftMusic">музычка</a>
     Успехов, все получится!</p>
 
 {% block javascript %}
@@ -52,7 +52,7 @@
                 $('#downloadgift').click(function(event) {
                     event.preventDefault();
                     $.ajax(
-                {
+                    {
                     url:"download/",
                     type:'get',
                     //data:{user : user_id},
@@ -63,10 +63,33 @@
                     error:function (error) {
 
 
-                    }
-                });
+                        }
+                    });
 
                 });
+
+                 $('#giftMusic').click(function(event) {
+                    event.preventDefault();
+                    $.ajax(
+                    {
+                    url:"music/",
+                    type:'get',
+                    //data:{user : user_id},
+                    success:function (data) {
+                    //window.location = '/media/userphotos/gift.pdf';
+
+                    },
+                    error:function (error) {
+
+
+                        }
+                    });
+
+                });
+
+
+
+
             });
 
 
