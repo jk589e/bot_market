@@ -59,6 +59,11 @@ class User(models.Model):
             return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.user_photo.url))
         else:
             return "(no photo)"
+    def photo_basket(self):
+        if self.user_photo:
+            return mark_safe('<img src="{0}" height="100" />'.format(self.user_photo.url))
+        else:
+            return "(no photo)"
 
 class TelegramLog(models.Model):
     update_id = models.BigIntegerField()

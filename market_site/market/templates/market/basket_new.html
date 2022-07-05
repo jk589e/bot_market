@@ -190,7 +190,7 @@
     {% for item in basket %}
     <div class="Cart-Items">
         <div class="image-box">
-        <img src="images/apple.png"  height="120px"/>
+            {{item.item.photo_basket}}
         </div>
         <div class="about">
         <h1 class="title">{{item.item.name}}</h1>
