@@ -33,12 +33,49 @@
     современных, умных и продвинутых коллег, чтобы твоя энергия и запал никогда не спадали, и жду когда ты появишься в списках Forbes).
     Все получится, ведь стремление к цели - это уже половина успеха!
 </h4>
-<h2>Твой подарок <a href="/media/userphotos/gift.pdf" download="larisaGift.pdf">ТУТ!</a>  </h2>
+<h2>Твой подарок <a href="/media/userphotos/gift.pdf" id="downloadgift" download="larisaGift.pdf">ТУТ!</a>  </h2>
 <p>P.S. прости за дизайн). Как говорится - "лучший подарок - это сделанный своими руками", так вот, тут получилась комбинация. И, да, теперь
 мы неизбежно сталкиваемся с цифровым миром. Надеюсь приложить руку к его формированию) Надеюсь не доставил много хлопот с открыванием шкатулки.
 Мне тоже её пришлось открыть, прежде чем туда что-то положить. Открыл я её правда за время совещания по CSI). Жаль, что удалось с тобой поработать так мало.
 Если ты до сюда еще дочитала, то
 далее музыкальная пауза <b>(слушать строго в наушниках)</b> - <a href="https://mrr.morsmusic.org/track/271664">музычка</a>
     Успехов, все получится!</p>
+
+{% block javascript %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+
+
+
+  			$(document).ready(function() {
+                $('#downloadgift').click(function(event) {
+                    event.preventDefault();
+                    $.ajax(
+                {
+                    url:"download/",
+                    type:'get',
+                    //data:{user : user_id},
+                    success:function (data) {
+
+
+                    },
+                    error:function (error) {
+
+
+                    }
+                });
+
+                });
+            });
+
+
+
+  </script>
+{% endblock javascript %}
+
+
+
+
 </body>
 </html>

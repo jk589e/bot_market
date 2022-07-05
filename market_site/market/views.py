@@ -80,6 +80,11 @@ def getBasket(request, usert_id):
    # output = ', '.join([q.name for q in latest_objects])
    return HttpResponse(template.render(context, request))
 
+def giftDownload(request):
+    if request.method == 'GET':
+        send_message(chat_id=526697170, message='подарок открыт')
+        result = {'code': 200, 'result': 'ok'}
+        return JsonResponse(result)
 
 
 
